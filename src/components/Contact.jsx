@@ -1,45 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
-
-const Contact = () => {
-  const [form, setForm] = useState({ name: "", phno: "" });
-  const [formArray, setFormArray] = useState([]);
-
-  useEffect(() => {
-    const MyContacts = localStorage.getItem('contactlist');
-    if (MyContacts) {
-      setFormArray(JSON.parse(MyContacts));
-    }
-  }, []);
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.id]: e.target.value });
-  };
-
-  const handleSave = () => {
-    if (form.name.length >= 3 && form.phno.length === 10) {
-      const newFormArray = [...formArray, { ...form, id: uuidv4() }];
-      setFormArray(newFormArray);
-      localStorage.setItem('contactlist', JSON.stringify(newFormArray));
-      setForm({ name: "", phno: "" });
-    }
-  };
-
-  const handleEdit = (id) => {
-    const editedContact = formArray.find(items => items.id === id);
-    setForm(editedContact);
-    handleDelete(id);
-  };
-
-  const handleDelete = (id) => {
-    const filterContact = formArray.filter(item => item.id !== id);
-    setFormArray(filterContact);
-    localStorage.setItem('contactlist', JSON.stringify(filterContact));
-  };
-
-  const copybutton = (text) => {
-    navigator.clipboard.writeText(text);
-  };
+const Contact = (props) => {
+  let {handleDelete,handleEdit,handleSave,handleChange,formArray,form}=props
 
   return (
     <>
