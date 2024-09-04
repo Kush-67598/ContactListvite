@@ -10,7 +10,7 @@ const Navbar = () => {
   
    <Link to='/'><li className='hover:font-bold hover:border-b-2 cursor-pointer'>Home</li></Link>
    <Link to='/Contacts'><li className='hover:font-bold hover:border-b-2 cursor-pointer'>Contacts</li></Link>
-    <li className='hover:font-bold hover:border-b-2 cursor-pointer'>About</li>
+    
 </ul>
         </nav>
     </>
